@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"> </script>
+<script>
+window.onload = function()
+{
+	document.getElementById("botoia").addEventListener("click", eskaeraEgin);
+}
+function eskaeraEgin()
+{
+	console.log("Eskaera egin behar da...");
+	var hiriak = document.getElementById("hiriak");
+	console.log(hiriak.value);
+	
+	//var helbidea = "http://api.openweathermap.org/data/2.5/weather?q=Bilbao,es";
+	var helbidea = "api.openweathermap.org/data/2.5/forecast/daily?q=Bilbao,es&cnt=3&APPID=0a4efff3794604ef2fc502f10c2407a9";
+	$.ajax(
+	{
+		url:helbidea,
+		success:function(result)
+		{
+			console.log("Kontsulta ondo burutu da");
+			$("#eguraldia").html("<h1>" + hiriak.value + "</h1><p>" + JSON.stringify(result) + "</p>");
+		}
+	});
+}
+</script>
+</head>
+<body>
+	<form>
+		<select id="hiriak">
+			<option value="Bilbo">Bilbo</option>
+			<option value="Donostia">Donostia</option>
+			<option value="Gasteiz">Gasteiz</option>
+		</select>
+		<input id="botoia" type="button" value="Eguraldia eskuratu!"/>
+	</form>
+	<div id="eguraldia">
+	</div>
+</body>
+</html>
