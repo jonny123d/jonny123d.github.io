@@ -7,6 +7,7 @@ window.onload = function()
 {
 	document.getElementById("botoia").addEventListener("click", eskaeraEgin);
 }
+var erantzuna;
 function eskaeraEgin()
 {
 	console.log("Eskaera egin behar da...");
@@ -22,6 +23,7 @@ function eskaeraEgin()
 		{
 			console.log("Kontsulta ondo burutu da");
 			$("#eguraldia").html("<h1>" + hiriak.value + "</h1><p>" + JSON.stringify(result) + "</p>");
+			erantzuna = result;
 		}
 	});
 }
