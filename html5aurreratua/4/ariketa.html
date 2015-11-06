@@ -24,7 +24,7 @@ function eskaeraEgin()
 			console.log("Kontsulta ondo burutu da");
 			erantzuna = result;
 			var bistaratzeko = erantzunaBistaratu(result);
-			$("#eguraldia").html("<h1>" + result.city.name + "</h1><p>" + JSON.stringify(result) + "</p>");
+			$("#eguraldia").html(bistaratzeko);
 		}
 	});
 }
