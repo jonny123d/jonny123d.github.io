@@ -15,7 +15,7 @@ function eskaeraEgin()
 	console.log(hiriak.value);
 	
 	//var helbidea = "http://api.openweathermap.org/data/2.5/weather?q=Bilbao,es";
-	var helbidea = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + hiriak.value + ",es&cnt=3&units=metric&APPID=0a4efff3794604ef2fc502f10c2407a9";
+	var helbidea = "http://api.openweathermap.org/data/2.5/forecast/daily?id=" + hiriak.value + ",es&cnt=3&units=metric&APPID=0a4efff3794604ef2fc502f10c2407a9";
 	$.ajax(
 	{
 		url:helbidea,
@@ -48,9 +48,9 @@ function erantzunaBistaratu(result)
 <body>
 	<form>
 		<select id="hiriak">
-			<option value="Bilbo">Bilbo</option>
-			<option value="Donostia">Donostia</option>
-			<option value="Gasteiz">Gasteiz</option>
+			<option value="6362368">Bilbo</option>
+			<option value="3110044">Donostia</option>
+			<option value="3104499">Gasteiz</option>
 		</select>
 		<input id="botoia" type="button" value="Eguraldia eskuratu!"/>
 	</form>
