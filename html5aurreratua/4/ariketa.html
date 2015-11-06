@@ -15,17 +15,33 @@ function eskaeraEgin()
 	console.log(hiriak.value);
 	
 	//var helbidea = "http://api.openweathermap.org/data/2.5/weather?q=Bilbao,es";
-	var helbidea = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Bilbao,es&cnt=3&APPID=0a4efff3794604ef2fc502f10c2407a9";
+	var helbidea = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Bilbao,es&cnt=3&units=metric&APPID=0a4efff3794604ef2fc502f10c2407a9";
 	$.ajax(
 	{
 		url:helbidea,
 		success:function(result)
 		{
 			console.log("Kontsulta ondo burutu da");
-			$("#eguraldia").html("<h1>" + hiriak.value + "</h1><p>" + JSON.stringify(result) + "</p>");
 			erantzuna = result;
+			var bistaratzeko = erantzunaBistaratu(result);
+			$("#eguraldia").html("<h1>" + result.city.name + "</h1><p>" + JSON.stringify(result) + "</p>");
 		}
 	});
+}
+function erantzunaBistaratu(result)
+{
+	var html = "<h1>" + result.city.name + "</h1>";
+	html += "<table><tr><th></th><th>Gaur</th><th>Bihar</th><th>Etzi</th></tr>";
+	html += "<tr><td></td><td><img src=\"http://openweathermap.org/img/w/" + result.list[0].weather[0].icon + ".png\"/></td><td><img src=\"http://openweathermap.org/img/w/" + result.list[1].weather[0].icon + ".png\"/></td><td><img src=\"http://openweathermap.org/img/w/" + result.list[2].weather[0].icon + ".png\"/></td></tr>";
+	html += "<tr><td>Tenperatura: </td><td> " + result.list[0].temp.day + "ºC </td><td> " + result.list[1].temp.day + "ºC </td><td> " + result.list[2].temp.day + "ºC </td></tr>";
+	html += "<tr><td>Hezetasuna: </td><td> %" + result.list[0].humidity + " </td><td> %" + result.list[1].humidity + " </td><td> %" + result.list[2].humidity + " </td></tr>";
+	html += "<tr><td>Presioa: </td><td> " + result.list[0].pressure + " hPa </td><td> " + result.list[1].pressure + " hPa </td><td> " + result.list[2].pressure + " hPa </td></tr>";
+	html += "<tr><td></td><td></td><td></td><td></td></tr>";
+	html += "</table>";
+	html += "<p>Hiriaren ezaugarriak:</p>"
+	html += "<ul><li>Id: " + result.city.id + "</li><li>Latitudea: " + result.city.lat + "º</li><li>Longitudea: " + result.city.lon + "º</li></ul>";
+	html += "<p></p><p></p><p></p><p>" + JSON.stringify(result) + "</p>";
+	return html;
 }
 </script>
 </head>
