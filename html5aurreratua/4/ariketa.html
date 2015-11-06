@@ -39,8 +39,8 @@ function erantzunaBistaratu(result)
 	html += "<tr><td></td><td></td><td></td><td></td></tr>";
 	html += "</table>";
 	html += "<p>Hiriaren ezaugarriak:</p>"
-	html += "<ul><li>Id: " + result.city.id + "</li><li>Latitudea: " + result.city.lat + "º</li><li>Longitudea: " + result.city.lon + "º</li></ul>";
-	html += "<p></p><p></p><p></p><p>" + JSON.stringify(result) + "</p>";
+	html += "<ul><li>Id: " + result.city.id + "</li><li>Latitudea: " + result.city.coord.lat + "º</li><li>Longitudea: " + result.city.coord.lon + "º</li></ul>";
+	html += "<p></p><br/><p></p><p>" + JSON.stringify(result) + "</p>";
 	return html;
 }
 </script>
