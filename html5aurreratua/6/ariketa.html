@@ -30,12 +30,12 @@ function isLehena(n) {
 	
 	var worker = new Worker("ww.js");
 	worker.onmessage = function(event) {
-		if (event == true)
+		if (event.data == true)
 			irteera.innerHTML += " \"" + n + " zenbaki lehena da\"";
-		else  if (event == true)
+		else  if (event.data == true)
 			irteera.innerHTML += " \"" + n + " ez da zenbaki lehena\"";
 		else
-			irteera.innerHTML += " \"lanean\"";
+			irteera.innerHTML += " \"lanean(" + event.data + ")\"";
 	}
 	worker.postMessage(num);
 	
