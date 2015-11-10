@@ -11,7 +11,7 @@ onmessage = function(e)
         var lehena = true;
         for (; i < n; ++i)
         {
-            if (n % 100 == 0)
+            if (i % 100 == 0)
                 postMessage(n);
             if (n % i == 0)
             {
