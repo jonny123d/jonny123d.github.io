@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"> </head>
+<body>
+<script>
+	
+var erloju ;
+
+window.onload = function() {
+ 	var num = 2227644437; 
+
+	var bistaratuBotoia = document.getElementById("bistaratu");
+	bistaratuBotoia.onclick = function() {
+		erloju = setInterval(bistaratu,100);		
+	};
+
+	var kalkulatuBotoia = document.getElementById("kalkulatu");
+	kalkulatuBotoia.onclick = function() { isLehena(num) };
+
+
+}
+
+function bistaratu() {
+	var irteera = document.getElementById("irteera");
+	irteera.innerHTML = irteera.innerHTML + " #";
+}
+
+function isLehena(n) {
+	var irteera = document.getElementById("irteera");
+	
+	var worker = new Worker("ww.js");
+	worker.onmessage = function(event) {
+		if (event == true)
+			irteera.innerHTML += " \"" + n + " zenbaki lehena da\"";
+		else  if (event == true)
+			irteera.innerHTML += " \"" + n + " ez da zenbaki lehena\"";
+		else
+			irteera.innerHTML += " \"lanean\"";
+	}
+	
+	//var i = 2;
+	//if (n == 2) return true;
+	//for (; i < n; ++i) {
+	//	if (n % i == 0) {
+	//		document.getElementById("irteera").innerHTML += i;
+	//	       	return false;
+	//	}
+	//	// console.log("Kalkulatzen:" + i);
+	//}
+ 	//clearInterval(erloju);	
+	//document.getElementById("irteera").innerHTML += i;
+	//return true;
+}
+
+</script>
+<div id="irteera"></div>
+<form>
+	<input type="button" id="kalkulatu" value="kalkulatu">
+	<input type="button" id="bistaratu" value="bistaratu">
+</form>
+
+</body>
+</html>
