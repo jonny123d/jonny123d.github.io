@@ -1,6 +1,6 @@
 onmessage = function(n)
 {
-    var i = 2;
+	var i = 2;
 	if (n == 1 || n == 2)
 	{
 		postMessage(true);
