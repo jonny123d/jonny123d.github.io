@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"> </head>
+<body>
+<script>
+	
+var erloju ;
+
+window.onload = function() {
+	
+ 	var num = 2227644437; 
+
+	var bistaratuBotoia = document.getElementById("bistaratu");
+	bistaratuBotoia.onclick = function() {
+		erloju = setInterval(bistaratu,100);		
+	};
+
+	var kalkulatuBotoia = document.getElementById("kalkulatu");
+	kalkulatuBotoia.onclick = function() { 
+		// Botoia sakatzean, workerra abiaraziko dugu
+		var worker = new Worker("js/ww.js");
+		
+		//Workerrak mezurik igortzen digunean, hau kudeatuko dugu.
+		worker.onmessage = function(event) {
+			//Bistaratu exekutatzetik utziko dugu
+			clearInterval(erloju);
+			//Itzulitako zenbakia pantailaratuko dugu
+			document.getElementById("irteera").innerHTML += event.data;
+			//workerra amaituko dugu
+			worker.terminate();
+		};
+	};
+
+
+}
+
+function bistaratu() {
+	var irteera = document.getElementById("irteera");
+	irteera.innerHTML = irteera.innerHTML + " #";
+}
+
+</script>
+<div id="irteera"></div>
+<form>
+	<input type="button" id="kalkulatu" value="kalkulatu">
+	<input type="button" id="bistaratu" value="bistaratu">
+</form>
+
+</body>
+</html>
