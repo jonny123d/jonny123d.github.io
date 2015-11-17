@@ -6,35 +6,22 @@
 	
 var erloju ;
 
+var worker = new Worker('worker.js');
+worker.onmessage = function (event) {
+	document.getElementById('irteera').innerHTML += event.data;
+	clearInterval(erloju);	
+};
+
 window.onload = function() {
- 	//var num = 2227644437; 
- 	//var num = 22;  	
- 	
+ 	var num = 2227644437;
+
 	var bistaratuBotoia = document.getElementById("bistaratu");
 	bistaratuBotoia.onclick = function() {
-		erloju = setInterval(bistaratu,100);				
+		erloju = setInterval(bistaratu,100);		
 	};
 
 	var kalkulatuBotoia = document.getElementById("kalkulatu");
-	kalkulatuBotoia.onclick = function() { 
-
-		var num = document.getElementById("number").value;
-
-		//isLehena(num) 
-		w = new Worker("is_lehena_worker.js");
-		w.postMessage(num);
-
-		w.onmessage = function(event)
-		{
-			if(event.data[0]===true)
-				console.log(event.data[1]+" lehena da.")
-			else
-				console.log(event.data[1]+" ez da lehena.")
-
-			w.terminate();
-		}
-
-	};
+	kalkulatuBotoia.onclick = function() { worker.postMessage(num) };
 
 
 }
@@ -45,10 +32,10 @@ function bistaratu() {
 }
 
 
+
 </script>
 <div id="irteera"></div>
 <form>
-	<input type="number" id="number" value="2">
 	<input type="button" id="kalkulatu" value="kalkulatu">
 	<input type="button" id="bistaratu" value="bistaratu">
 </form>
