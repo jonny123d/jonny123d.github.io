@@ -4,11 +4,7 @@
 <body>
 <script>
 	
-var erloju ;
-
 window.onload = function() {
-	
- 	var num = 2227644437; 
 
 	var bistaratuBotoia = document.getElementById("bistaratu");
 	bistaratuBotoia.onclick = function() {
@@ -16,31 +12,26 @@ window.onload = function() {
 	};
 
 	var kalkulatuBotoia = document.getElementById("kalkulatu");
-	kalkulatuBotoia.onclick = function() { 
-		// Botoia sakatzean, workerra abiaraziko dugu
-		var worker = new Worker("js/ww.js");
-		
-		//Workerrak mezurik igortzen digunean, hau kudeatuko dugu.
-		worker.onmessage = function(event) {
-			//Bistaratu exekutatzetik utziko dugu
-			clearInterval(erloju);
-			//Itzulitako zenbakia pantailaratuko dugu
-			document.getElementById("irteera").innerHTML += event.data;
-			//workerra amaituko dugu
-			worker.terminate();
+	kalkulatuBotoia.onclick = function() {
+		var worker = new Worker('worker.js');
+		worker.onmessage = function (event) {
+		document.getElementById('irteera').innerHTML = event.data;
+		function stopWorker() { 
+			    w.terminate();
+			    w = undefined;
+			}
 		};
 	};
-
-
 }
 
 function bistaratu() {
-	var irteera = document.getElementById("irteera");
+	var irteera = document.getElementById("irteera2");
 	irteera.innerHTML = irteera.innerHTML + " #";
 }
 
 </script>
 <div id="irteera"></div>
+<div id="irteera2"></div>
 <form>
 	<input type="button" id="kalkulatu" value="kalkulatu">
 	<input type="button" id="bistaratu" value="bistaratu">
