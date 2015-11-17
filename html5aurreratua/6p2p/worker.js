@@ -1,29 +1,20 @@
- var num = 2227644437; 
- //var num = 37; 
-var erloju ;
-function isLehena(n) {
-	var i = 2;
-	var count=0;
-	var aldiro= Math.floor(num/20);//Zenbaki itzela eta lehena bada ere, ez du 20 mezu baino gehiago erakutsiko console.log-en
-	if (n == 2) 
-	{
-		postMessage(num+" Zenbaki lehena da");
-		return true;
-	}
+
+self.onmessage = function(event){
+	n = event.data;
+	console.log("Sartu da n: " + n);
+	
+    var i = 2;
+	if (n == 2) return true;
 	for (; i < n; ++i) {
 		if (n % i == 0) {
-		     	postMessage(i);
-			return false;
+			postMessage(i);
+			//document.getElementById("irteera").innerHTML += i;
+		       	return false;
 		}
-		count++;
-		if (count % aldiro == 0)//ez kargatu gehiegi bestela worker-a bera blokeatuko jaku// 
-		{
-			console.log("Kalkulatzen:" + i);
-		}
+		 //console.log("Kalkulatzen:" + i);
 	}
- 	clearInterval(erloju);	
-	postMessage(num+" Zenbaki lehena da");
+ 	//clearInterval(erloju);	
+	//document.getElementById("irteera").innerHTML += i;
+	postMessage(i);
 	return true;
-}
-
-isLehena(num);
+};
