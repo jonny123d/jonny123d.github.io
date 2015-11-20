@@ -434,7 +434,7 @@ Tetris.prototype.init = function() {
     // Argibidea: (Board badu margotzeko metodo bat)
     this.board.draw_shape(this.current_shape);
 
-    this.erloju = setInterval(this.animate_shape,1000);
+    this.erloju = setInterval(this.animate_shape.bind(this), 1000);
 };
 
 Tetris.prototype.key_pressed = function(e) { 
@@ -496,6 +496,6 @@ Tetris.prototype.do_rotate = function() {
 
 /* 9. ariketa */
 Tetris.prototype.animate_shape = function() {
-    this.game.do_move("Down");
+    this.do_move("Down");
 };
 
